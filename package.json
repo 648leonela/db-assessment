@@ -1,0 +1,32 @@
+{
+  "name": "db-assessment",
+  "version": "1.0.0",
+  "description": "EcoMarket Riwi S.A.S. — relational database assessment with a raw-SQL OOP app (node-postgres)",
+  "license": "MIT",
+  "main": "app/src/index.js",
+  "scripts": {
+    "setup": "node app/src/setup.js",
+    "db:seed": "node app/src/setup.js",
+    "start": "node app/src/index.js",
+    "dev": "nodemon",
+    "demo": "node app/src/index.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "pg": "^8.13.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "nodemonConfig": {
+    "watch": ["app/src", "app/.env"],
+    "ext": "js,json,env",
+    "ignore": ["node_modules/**"],
+    "exec": "node app/src/index.js",
+    "delay": 400,
+    "restartable": "rs",
+    "env": {
+      "NODE_ENV": "development"
+    }
+  }
+}

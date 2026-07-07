@@ -1,0 +1,52 @@
+erDiagram
+    eco_city ||--o{ eco_order : "receives"
+    eco_client ||--o{ eco_order : "places"
+    eco_distribution_center ||--o{ eco_order : "fulfills"
+    eco_category ||--o{ eco_product : "classifies"
+    eco_order ||--o{ eco_order_detail : "contains"
+    eco_product ||--o{ eco_order_detail : "is ordered in"
+    eco_product ||--o{ eco_inventory : "is stored as"
+    eco_distribution_center ||--o{ eco_inventory : "holds"
+
+    eco_city {
+        int city_id PK
+        varchar city_name UK "NOT NULL"
+    }
+    eco_category {
+        int category_id PK
+        varchar category_name UK "NOT NULL"
+    }
+    eco_client {
+        int client_id PK
+        varchar client_name UK "NOT NULL"
+    }
+    eco_distribution_center {
+        int center_id PK
+        varchar center_name UK "NOT NULL"
+    }
+    eco_product {
+        int product_id PK
+        varchar product_name UK "NOT NULL"
+        decimal unit_price "NOT NULL, CHECK > 0"
+        int category_id FK "NOT NULL"
+    }
+    eco_order {
+        int order_id PK
+        varchar order_code UK "NOT NULL"
+        date order_date "NOT NULL"
+        int client_id FK "NOT NULL"
+        int center_id FK "NOT NULL"
+        int city_id FK "NOT NULL"
+    }
+    eco_order_detail {
+        int order_detail_id PK
+        int order_id FK "NOT NULL"
+        int product_id FK "NOT NULL"
+        int quantity "NOT NULL, CHECK > 0"
+    }
+    eco_inventory {
+        int inventory_id PK
+        int product_id FK "NOT NULL"
+        int center_id FK "NOT NULL"
+        int stock "NOT NULL, CHECK >= 0"
+    }

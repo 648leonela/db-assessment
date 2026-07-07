@@ -1,0 +1,11 @@
+# Node.js / PostgreSQL
+node_modules/
+app/node_modules/
+.env
+app/.env
+*.log
+
+# OS
+Thumbs.db
+.DS_Store
+package-lock.json
